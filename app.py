@@ -1,14 +1,14 @@
-# AGENT: Deep Research + Visual Carousel Creator (Corrected Professional Flow)
+# AGENT: Deep Research + Visual Carousel Creator (Corrected Professional Flow for OpenAI v1)
 
-import openai
+from openai import OpenAI
 import streamlit as st
 from streamlit_extras.colored_header import colored_header
 
 # Secure API key using Streamlit Secrets Manager
 OPENAI_API_KEY = st.secrets["OPENAI_API_KEY"]
 
-# Set up OpenAI configuration
-openai.api_key = OPENAI_API_KEY
+# Initialize OpenAI client
+client = OpenAI(api_key=OPENAI_API_KEY)
 
 # Helper: Deep research and structured slide creation
 def deep_research_and_create_slides(topic, audience_profile, tone_style):
@@ -22,16 +22,10 @@ def deep_research_and_create_slides(topic, audience_profile, tone_style):
 
     Then structure this into a 9-slide Instagram carousel:
     - Slide 1: Big emotional hook (max 8 words)
-    - Slide 2: One clear idea per slide.
-    - Slide 3: One clear idea per slide.
-    - Slide 4: One clear idea per slide.
-    - Slide 5: One clear idea per slide.
-    - Slide 6: One clear idea per slide.
-    - Slide 7: One clear idea per slide.
-    - Slide 8: One clear idea per slide.
-    - Slide 9: Positive CTA (e.g., "Share this healing tip 🌱")
+    - Slide 2-8: Logical flow, one idea per slide.
+    - Slide 9: Motivational Call to Action (e.g., "Share this healing tip 🌱")
 
-    Each slide should have:
+    Each slide must have:
     - Title (max 8 words)
     - Body Text (1–2 motivational, educational sentences)
 
@@ -58,11 +52,11 @@ def deep_research_and_create_slides(topic, audience_profile, tone_style):
     ...(continue till Slide 9)
     """
 
-    gpt_response = openai.ChatCompletion.create(
+    response = client.chat.completions.create(
         model="gpt-4o",
         messages=[{"role": "user", "content": master_prompt}]
     )
-    return gpt_response['choices'][0]['message']['content']
+    return response.choices[0].message.content
 
 # Streamlit UI Setup
 st.set_page_config(
