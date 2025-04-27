@@ -22,7 +22,13 @@ def deep_research_and_create_slides(topic, audience_profile, tone_style):
 
     Then structure this into a 9-slide Instagram carousel:
     - Slide 1: Big emotional hook (max 8 words)
-    - Slide 2-8: One clear idea per slide.
+    - Slide 2: One clear idea per slide.
+    - Slide 3: One clear idea per slide.
+    - Slide 4: One clear idea per slide.
+    - Slide 5: One clear idea per slide.
+    - Slide 6: One clear idea per slide.
+    - Slide 7: One clear idea per slide.
+    - Slide 8: One clear idea per slide.
     - Slide 9: Positive CTA (e.g., "Share this healing tip 🌱")
 
     Each slide should have:
@@ -41,10 +47,15 @@ def deep_research_and_create_slides(topic, audience_profile, tone_style):
     Tone Style: {tone_style}
 
     Output Format:
-    Slide {n}:
+    Slide 1:
     Title: ""
     Body Text: ""
     DALL-E Prompt: ""
+    Slide 2:
+    Title: ""
+    Body Text: ""
+    DALL-E Prompt: ""
+    ...(continue till Slide 9)
     """
 
     gpt_response = openai.ChatCompletion.create(
@@ -61,7 +72,7 @@ st.set_page_config(
     initial_sidebar_state="collapsed",
 )
 
-colored_header("Deep Research + Professional Carousel Generator", description="✨ Create beautiful health carousels from credible research", color_name="light-green-70")
+colored_header("Deep Research + Professional Carousel Generator", description="✨ Create beautiful health carousels from credible research", color_name="green-70")
 
 user_topic = st.text_input("Enter a health topic (e.g., Benefits of Turmeric)")
 audience_profile = st.text_input("Describe your audience (e.g., Women 25-45, gut health conscious)")
